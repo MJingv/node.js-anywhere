@@ -2,9 +2,14 @@
   "name": "node.js-anywhere",
   "version": "1.0.0",
   "description": "my NodeJs Static Web Server",
-  "main": ".eslintrc.js",
-  "dependencies": {},
+  "main": "build/app.js",
+  "dependencies": {
+    "chalk": "^2.1.0",
+    "handlebars": "^4.0.10"
+  },
   "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.8.0",
     "pre-commit": "^1.2.2"
   },
   "pre-commit": [
@@ -13,6 +18,7 @@
   ],
   "scripts": {
     "lint": "eslint .",
+    "fix": "eslint --fix .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,7 +29,7 @@
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/MJingv/node.js-anywhere/issues"
+    "url": "https://githu.com/MJingv/node.js-anywhere/issues"
   },
   "homepage": "https://github.com/MJingv/node.js-anywhere#readme"
 }

@@ -1,7 +1,7 @@
 const http = require('http')
 const chalk = require('chalk')
-const conf = require('./config/defaultConf')
 const path = require('path')
+const conf = require('./config/defaultConf')
 const router = require('./helper/router')
 
 const server = http.createServer((req, res) => {
