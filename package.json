@@ -2,10 +2,14 @@
   "name": "node.js-anywhere",
   "version": "1.0.0",
   "description": "my NodeJs Static Web Server",
-  "main": "build/app.js",
+  "main": "src/app.js",
+  "bin":{
+    "anywhere":"bin/anywhere"
+  },
   "dependencies": {
     "chalk": "^2.1.0",
-    "handlebars": "^4.0.10"
+    "handlebars": "^4.0.10",
+    "yargs": "^9.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.0.1",
