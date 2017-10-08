@@ -8,6 +8,8 @@ const config = require('../config/defaultConf')
 const mime = require('./mime')
 const compress = require('./compress')
 const range = require('./rang')
+const isFresh = require('./cache')
+
 
 const tplPath = path.join(__dirname, '../template/dir.tpl')
 
@@ -23,6 +25,13 @@ module.exports = async function (req, res, filePath) {
       const contentType = mime(filePath)
       res.statusCode = 200
       res.setHeader('Content-Type', contentType)
+
+      if (isFresh(stats, req, res)) {
+        res.statusCode = 304
+        res.end()
+        return
+      }
+
       let rs;
       const {
         code,
