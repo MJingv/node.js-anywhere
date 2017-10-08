@@ -28,7 +28,10 @@ anywhere -d /user # 把根目录设置为任意（eg：/usr）
 ```
 supervisor --  monitor and control a number of processes on UNIX-like operating systems
               (自动监听文件修改并重启server)
+
 chalk -- highlights
+
 yargs -- Yargs helps you build interactive command line tools, by parsing arguments and                 generating an elegant user interface
+
 pre-commit -- tests before commit
 ```
