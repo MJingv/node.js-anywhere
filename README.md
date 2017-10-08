@@ -2,14 +2,6 @@
 
 my NodeJs Static Web Server
 
-## how to use ??
-
-continuing
-
-## tips
-
-supervisor -- 自动监听文件修改并重启server
-
 ## install
 
 ```
@@ -17,7 +9,7 @@ supervisor -- 自动监听文件修改并重启server
 npm i -g anywhere
 ```
 
-## way to use
+## how to use?
 
 ```
 
@@ -29,4 +21,14 @@ anywhere -h localhost # 把主机设置为任意（eg：localhost）
 
 anywhere -d /user # 把根目录设置为任意（eg：/usr）
 
+```
+
+## tips
+
+```
+supervisor --  monitor and control a number of processes on UNIX-like operating systems
+              (自动监听文件修改并重启server)
+chalk -- highlights
+yargs -- Yargs helps you build interactive command line tools, by parsing arguments and                 generating an elegant user interface
+pre-commit -- tests before commit
 ```
