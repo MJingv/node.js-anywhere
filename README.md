@@ -26,12 +26,23 @@ anywhere -d /user # 把根目录设置为任意（eg：/usr）
 ## tips
 
 ```
+range -- 设置header头来设置想要读取文件的范围 利用curl去设置
+compress -- 利用node的zlib中的gzip或者deflate方法去压缩
+
+```
+
+## tools
+
+```
 supervisor --  monitor and control a number of processes on UNIX-like operating systems
               (自动监听文件修改并重启server)
 
+curl -- 方便进行http设置，参数传递等
+
 chalk -- highlights
 
-yargs -- Yargs helps you build interactive command line tools, by parsing arguments and                 generating an elegant user interface
+yargs -- Yargs helps you build interactive command line tools, by parsing arguments and generating an elegant user interface
+
 
 pre-commit -- tests before commit
 ```

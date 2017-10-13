@@ -2,11 +2,15 @@ const fs = require('fs')
 const path = require('path')
 const Handlebars = require('handlebars')
 const conf = require('../config/defaultConf')
+const range = require('./range')
+
 //利用promisify将异步回调优化
 const promisify = require('util').promisify
 const stat = promisify(fs.stat) //判断文件类型
 const readdir = promisify(fs.readdir) //读取目录信息
 const mime = require('./mime')
+const compress = require('./compress')
+
 //不论从地址进入，都可以读到tpl正确的地址
 const tplPath = path.join(__dirname, '../template/dir.tpl') //绝对正确的路径=absolutePath+tplPat
 //同步读取文件？=》只会执行一次，第二次会用缓存 || 所有页面都用一样的tpl
@@ -22,10 +26,33 @@ module.exports = async function (req, res, filePath) {
     if (stats.isFile()) {
       //如果判断为文件
       const contentType = mime(filePath)
-      res.statusCode = 200
+
       res.setHeader('Content-Type', contentType)
       //stream读文件
-      fs.createReadStream(filePath).pipe(res)
+      let rs
+      const {
+        code,
+        start,
+        end
+      } = range(stats.size, req, res)
+      //range 读取部分文件
+      if (code === 200) {
+        res.statusCode = 200
+        rs = fs.createReadStream(filePath)
+      } else if (code === 206) {
+        res.statusCode = 206
+        //如果输入正确则返回部分文件内容
+        rs = fs.createReadStream(filePath, {
+          start,
+          end
+        })
+      }
+      if (filePath.match(conf.compress)) {
+        //让符合要求的文件进行压缩
+        rs = compress(rs, req, res)
+      }
+      rs.pipe(res)
+
       res.write(`${filePath} is a file`)
     } else if (stats.isDirectory()) {
       const files = await readdir(filePath)
