@@ -22,6 +22,7 @@ const mimeTypes = {
 }
 
 module.exports = (filePath) => {
+  //读取拓展名 [jquery.min.js] .分割后为数组，读取最后一个pop，转成小写
   let ext = path.extname(filePath).split('.').pop().toLowerCase()
   if (!ext) {
     ext = filePath

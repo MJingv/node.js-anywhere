@@ -1,26 +1,16 @@
 const http = require('http')
 const chalk = require('chalk')
-const path = require('path')
 const conf = require('./config/defaultConf')
-const router = require('./helper/router')
-const openUrl = require('./helper/openUrl')
+const path = require('path')
+const route =require('./helper/route')
 
-class Server {
-  constructor(config) {
-    this.conf = Object.assign({}, conf, config)
-    //将默认conf和用户输入的config合并起来==>浅拷贝
-  }
-  start() {
-    const server = http.createServer((req, res) => {
-      const filePath = path.join(this.conf.root, req.url)
-      router(req, res, filePath, this.conf)
-    })
-    server.listen(this.conf.port, this.conf.hostname, () => {
-      const addr = `http://${this.conf.hostname}:${this.conf.port}`
-      console.info(`server started at ${chalk.bgKeyword('pink').bold.red(addr)}`)
-      openUrl(addr)
-    })
-  }
-}
+const server = http.createServer((req, res) => {
+  const url = req.url //用户请求的路径
+  const filePath = path.join(conf.root, url) //完整地址=当前目录地址+用户请求url
+  route(req, res, filePath)
+})
 
-module.exports = Server
+server.listen(conf.port, conf.hostname, () => {
+  const addr = `http://${conf.hostname}:${conf.port}`
+  console.info(`Server started at ${chalk.green(addr)}`)
+})

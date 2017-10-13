@@ -44,8 +44,6 @@
       padding-bottom: 0.2em;
       color: #666;
     }
-
-
     .file-name {
       line-height: 1.8em;
       border-left: 2px solid #AEE2D9;
@@ -53,7 +51,6 @@
       -webkit-transition: 0.5s;
       transition: 0.5s;
     }
-
   </style>
 </head>
 
@@ -66,7 +63,6 @@
       【 {{icon}} 】
       <span class="file-name"> {{file}}</span>
     </div>
-
   </a>
   {{/each}}
 </body>
