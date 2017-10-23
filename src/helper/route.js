@@ -3,6 +3,8 @@ const path = require('path')
 const Handlebars = require('handlebars')
 const conf = require('../config/defaultConf')
 const range = require('./range')
+const isFresh = require('./cache')
+
 
 //利用promisify将异步回调优化
 const promisify = require('util').promisify
@@ -29,6 +31,11 @@ module.exports = async function (req, res, filePath) {
 
       res.setHeader('Content-Type', contentType)
       //stream读文件
+      if (isFresh(stats, req, rs)) {
+        res.statusCode = 304
+        res.end()
+        return
+      }
       let rs
       const {
         code,
