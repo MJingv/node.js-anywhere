@@ -25,12 +25,3 @@ module.exports = (totalSize, req, res) => {
         end: parseInt(end)
     }
 }
-
-for (var i = 0; i < 10; i++) {
-    (function fn(i) {
-        return function m() {
-            console.log(i)
-        }
-    })(i)
-
-}
